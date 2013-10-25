@@ -1,0 +1,11 @@
+<h1>Editing group</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @group %> |
+<%= link_to 'Back', groups_path %>
+<%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
+<%= modal_dialog :id => "modal",
+                 :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
+                 :body   => 'This is the body',
+                 :footer => content_tag(:button, 'Save', :class => 'btn') %>

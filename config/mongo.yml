@@ -1,0 +1,18 @@
+defaults: &defaults
+  host: 10.15.107.212
+  port: 36038
+
+development:
+  <<: *defaults
+  database: tw_development
+
+test:
+  <<: *defaults
+  database: tw_test
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  database: tw
+  username: <%= ENV['MONGO_USERNAME'] %>
+  password: <%= ENV['MONGO_PASSWORD'] %>
