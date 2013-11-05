@@ -1,4 +1,7 @@
 Tw::Application.routes.draw do
+  resources :apis
+
+
   resources :users
 
 

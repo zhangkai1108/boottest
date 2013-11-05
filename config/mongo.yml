@@ -1,6 +1,6 @@
 defaults: &defaults
-  host: 10.15.107.212
-  port: 36038
+  host: 127.0.0.1
+  port: 27017
 
 development:
   <<: *defaults

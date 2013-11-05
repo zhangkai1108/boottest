@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+       <div class="span4" style="background-color: bisque">
+         <%= form_for(@api,:remote=>true) do |f| %>
+             <% if @api.errors.any? %>
+                 <div id="error_explanation">
+                   <h2><%= pluralize(@api.errors.count, "error") %> prohibited this api from being saved:</h2>
+
+                   <ul>
+                     <% @api.errors.full_messages.each do |msg| %>
+                         <li><%= msg %></li>
+                     <% end %>
+                   </ul>
+                 </div>
+             <% end %>
+
+             <div class="field">
+               <%= f.label :label %><br />
+               <%= f.text_field :label %>
+             </div>
+             <div class="field">
+               <%= f.label :desc %><br />
+               <%= f.text_field :desc %>
+             </div>
+             <div class="field">
+               <%= f.label :cleintContent %><br />
+               <%= f.text_area :cleintContent , :size => "40x10" %>
+             </div>
+             <div class="actions">
+               <%= f.submit %>
+             </div>
+         <% end %>
+       </div>
+    <div id = 'display' class="span8">
+            <%= render 'display',:object => @api %>
+    <div >
+  </div>
+</div>
+      </div>
+    </div>
