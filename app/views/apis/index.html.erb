@@ -1,37 +1,84 @@
+
+<% content_for :menuContent do %>
+    <ul id="menu">
+      <li><a href="#">Aberdeen</a></li>
+      <li><a href="#">Ada</a></li>
+      <li><a href="#">Adamsville</a></li>
+      <li><a href="#">Addyston</a></li>
+      <li>
+        <a href="#">Delphi</a>
+        <ul>
+          <li><a href="#">Ada</a></li>
+          <li><a href="#">Saarland</a></li>
+          <li><a href="#">Salzburg</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Saarland</a></li>
+      <li>
+        <a href="#">Salzburg</a>
+        <ul>
+          <li>
+            <a href="#">Delphi</a>
+            <ul>
+              <li><a href="#">Ada</a></li>
+              <li><a href="#">Saarland</a></li>
+              <li><a href="#">Salzburg</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="?Delphi">Delphi</a>
+            <ul>
+              <li><a href="#">Ada</a></li>
+              <li><a href="#">Saarland</a></li>
+              <li><a href="#">Salzburg</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Perch</a></li>
+        </ul>
+      </li>
+    </ul>
+<% end %>
 <div class="container-fluid">
   <div class="row-fluid">
-       <div class="span4" style="background-color: bisque">
+       <div class="span6" style="background-color: bisque">
          <%= form_for(@api,:remote=>true) do |f| %>
-             <% if @api.errors.any? %>
-                 <div id="error_explanation">
-                   <h2><%= pluralize(@api.errors.count, "error") %> prohibited this api from being saved:</h2>
 
-                   <ul>
-                     <% @api.errors.full_messages.each do |msg| %>
-                         <li><%= msg %></li>
-                     <% end %>
-                   </ul>
+
+             <div class="tabbable" style="margin-bottom: 9px;">
+               <ul class="nav nav-tabs">
+                 <li class="active"><a href="#1" data-toggle="tab">基础信息</a></li>
+                 <li><a href="#2" data-toggle="tab">基础代码</a></li>
+                 <li><a href="#3" data-toggle="tab">依赖代码</a></li>
+               </ul>
+               <div class="tab-content">
+                 <div class="tab-pane active" id="1">
+                   <input type="text" class="form-control" size="20" placeholder="标签" name="api[label]" value="<%=@api.label%>">
+                   <div class="field">
+                     <%= f.label :desc %><br />
+                     <%= f.text_field :desc %>
+                   </div>
                  </div>
-             <% end %>
-
-             <div class="field">
-               <%= f.label :label %><br />
-               <%= f.text_field :label %>
-             </div>
-             <div class="field">
-               <%= f.label :desc %><br />
-               <%= f.text_field :desc %>
-             </div>
-             <div class="field">
-               <%= f.label :cleintContent %><br />
-               <%= f.text_area :cleintContent , :size => "40x10" %>
-             </div>
+                 <div class="tab-pane" id="2">
+                   <div class="field">
+                     <textarea class="form-control" id="TestCode" wrap="logical" cols="30" rows ="20">
+<pre>
+ text_area :cleintContent
+</pre>
+                     </textarea>
+                   </div>
+                 </div>
+                 <div class="tab-pane" id="3">
+                   <pre>
+                   </pre>
+                 </div>
+               </div>
+             </div> <!-- /tabbable -->
              <div class="actions">
                <%= f.submit %>
              </div>
          <% end %>
        </div>
-    <div id = 'display' class="span8">
+    <div id = 'display' class="span6">
             <%= render 'display',:object => @api %>
     <div >
   </div>

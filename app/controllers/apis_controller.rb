@@ -1,4 +1,5 @@
 class ApisController < ApplicationController
+  layout  'sample'
   # GET /apis
   # GET /apis.json
   def index
@@ -41,7 +42,7 @@ class ApisController < ApplicationController
   def create
     @api = Api.new(params[:api])
     @api.save
-    file_join = "F:/ruby/ror/tw/app/views/apis/_display.html.erb"
+    file_join = __FILE__[0,__FILE__.index("app")]<<"views/apis/_display.html.erb"
     file = File.new(file_join,'w')
     file.puts(@api.cleintContent)
     file.close
