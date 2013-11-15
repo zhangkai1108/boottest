@@ -4,6 +4,7 @@ class ApisController < ApplicationController
   # GET /apis.json
   def index
     @api = Api.new
+    @apis = Api.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @apis }
@@ -14,11 +15,8 @@ class ApisController < ApplicationController
   # GET /apis/1.json
   def show
     @api = Api.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @api }
-    end
+    @apis = Api.all
+    render(:template => 'apis/index')
   end
 
   # GET /apis/new
@@ -42,7 +40,7 @@ class ApisController < ApplicationController
   def create
     @api = Api.new(params[:api])
     @api.save
-    file_join = __FILE__[0,__FILE__.index("app")]<<"views/apis/_display.html.erb"
+    file_join = getDisplayFile()
     file = File.new(file_join,'w')
     file.puts(@api.cleintContent)
     file.close
@@ -55,20 +53,23 @@ class ApisController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @api.errors, status: :unprocessable_entity }
       end
-  end
+    end
+    end
 
   # PUT /apis/1
   # PUT /apis/1.json
   def update
     @api = Api.find(params[:id])
-
+    @flag = @api.update_attributes(params[:api])
+    file_join = getDisplayFile()
+    file = File.new(file_join,'w')
+    file.puts(@api.cleintContent)
+    file.close
     respond_to do |format|
-      if @api.update_attributes(params[:api])
-        format.html { redirect_to @api, notice: 'Api was successfully updated.' }
-        format.json { head :no_content }
+      if @flag
+        format.js
       else
-        format.html { render action: "edit" }
-        format.json { render json: @api.errors, status: :unprocessable_entity }
+        format.html { render action: "apis/index" }
       end
     end
   end
@@ -83,6 +84,9 @@ class ApisController < ApplicationController
       format.html { redirect_to apis_url }
       format.json { head :no_content }
     end
+   end
+
+  def getDisplayFile
+    file_join = __FILE__[0, __FILE__.index("app")]<<"app/views/apis/_display.html.erb"
   end
-  end
-  end
+end

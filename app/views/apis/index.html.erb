@@ -1,39 +1,15 @@
 
 <% content_for :menuContent do %>
     <ul id="menu">
-      <li><a href="#">Aberdeen</a></li>
-      <li><a href="#">Ada</a></li>
-      <li><a href="#">Adamsville</a></li>
-      <li><a href="#">Addyston</a></li>
-      <li>
+      <% @apis.each{|a| %>
+      <li><a href="/apis/<%=a[:_id]%>"><%= a["label"] %></a></li>
+       <% } %>
+     <li>
         <a href="#">Delphi</a>
         <ul>
           <li><a href="#">Ada</a></li>
           <li><a href="#">Saarland</a></li>
           <li><a href="#">Salzburg</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Saarland</a></li>
-      <li>
-        <a href="#">Salzburg</a>
-        <ul>
-          <li>
-            <a href="#">Delphi</a>
-            <ul>
-              <li><a href="#">Ada</a></li>
-              <li><a href="#">Saarland</a></li>
-              <li><a href="#">Salzburg</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="?Delphi">Delphi</a>
-            <ul>
-              <li><a href="#">Ada</a></li>
-              <li><a href="#">Saarland</a></li>
-              <li><a href="#">Salzburg</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Perch</a></li>
         </ul>
       </li>
     </ul>
@@ -42,28 +18,24 @@
   <div class="row-fluid">
        <div class="span6" style="background-color: bisque">
          <%= form_for(@api,:remote=>true) do |f| %>
-
-
              <div class="tabbable" style="margin-bottom: 9px;">
                <ul class="nav nav-tabs">
-                 <li class="active"><a href="#1" data-toggle="tab">基础信息</a></li>
-                 <li><a href="#2" data-toggle="tab">基础代码</a></li>
+                 <li><a href="#1" data-toggle="tab">基础信息</a></li>
+                 <li  class="active"><a href="#2" data-toggle="tab">基础代码</a></li>
                  <li><a href="#3" data-toggle="tab">依赖代码</a></li>
                </ul>
                <div class="tab-content">
-                 <div class="tab-pane active" id="1">
+                 <div class="tab-pane" id="1">
                    <input type="text" class="form-control" size="20" placeholder="标签" name="api[label]" value="<%=@api.label%>">
                    <div class="field">
                      <%= f.label :desc %><br />
                      <%= f.text_field :desc %>
                    </div>
                  </div>
-                 <div class="tab-pane" id="2">
+                 <div class="tab-pane active" id="2">
                    <div class="field">
-                     <textarea class="form-control" id="TestCode" wrap="logical" cols="30" rows ="20">
-<pre>
- text_area :cleintContent
-</pre>
+                     <textarea class="form-control" name="api[cleintContent]"  id="TestCode" wrap="logical" style="width: 98%" rows ="20">
+                       <%= @api[:cleintContent] %>
                      </textarea>
                    </div>
                  </div>

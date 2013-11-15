@@ -1,6 +1,51 @@
-<%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
-
-<%= modal_dialog :id => "modal",
-         :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
-                 :body   => 'This is the body',
-                 :footer => content_tag(:button, 'Save', :class => 'btn') %>
+                                                                                             <div class="clearfix">
+        <ul id="menu11">
+            <li><a href="#">Aberdedddden</a></li>
+            <li><a href="#">Ada</a></li>
+            <li><a href="#">Adamsville</a></li>
+            <li><a href="#">Addyddddston</a></li>
+            <li>
+                <a href="#">Delphi</a>
+                <ul>
+                    <li><a href="#">Ada</a></li>
+                    <li><a href="#">Saarland</a></li>
+                    <li><a href="#">Salzburg</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Saarland</a></li>
+            <li>
+                <a href="#">Salzburg</a>
+                <ul>
+                    <li>
+                        <a href="#">Delphi</a>
+                        <ul>
+                            <li><a href="#">Ada</a></li>
+                            <li><a href="#">Saarland</a></li>
+                            <li><a href="#">Salzburg</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="?Delphi">Delphi</a>
+                        <ul>
+                            <li><a href="#">Ada</a></li>
+                            <li><a href="#">Saarland</a></li>
+                            <li><a href="#">Salzburg</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Perch</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+<script type="text/javascript">
+        $(function(){
+               $("#menu11").menu();
+         });
+</script>
+                     
+                     
+                     
+                     
+                     
+                     
+                     
