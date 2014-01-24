@@ -1,8 +1,12 @@
 defaults: &defaults
 #  host: 127.0.0.1
 #  port: 27017
-  host: 10.15.107.212
-  port: 27017
+  host: troup.mongohq.com
+  port: 10048
+  username: zhangkai
+  password: abcd.1234
+#  host: 10.15.107.212
+#  port: 36038
 development:
   <<: *defaults
   database: tw_development
